@@ -27,8 +27,9 @@ logFile.map((line) => {
     }
 });
 
-console.log(items);
-
+// console.log(items);
 console.log(items.map(timeAndPath));
+
+module.exports = items.map(timeAndPath);
 
 
