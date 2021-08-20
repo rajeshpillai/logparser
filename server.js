@@ -8,11 +8,12 @@ var logs = require("./parser.js");
 
 let port = 4000;
 
-app.use(cors())
+app.use(cors());
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.use('/scripts', express.static(__dirname + '/node_modules/'))
 
 // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }))
