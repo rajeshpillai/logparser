@@ -10,6 +10,9 @@ let port = 4000;
 
 app.use(cors())
 
+app.set('view engine', 'ejs')
+
+app.use(express.static('public'))
 
 // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }))
@@ -18,7 +21,8 @@ app.use(cors())
 // app.use(bodyParser.json())
 
 app.get("/", function (req, res, next) {
-  res.sendFile(path.join(__dirname+'/public/index.html'));
+  //res.sendFile("index.html");
+  res.render("index", {logs});
 });
 
 app.get('/logs', function (req, res, next) {

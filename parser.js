@@ -12,7 +12,10 @@ function parseItem(item) {
 function timeAndPath(item) {
   let time = item.timestamp;
   let path = item.item[1].split("=")[1];
-  return {time, path};
+
+  let query = path ? path.split("/").filter(Boolean) : "";
+
+  return {time, path, query};
 }
 
 logFile.map((line) => {
