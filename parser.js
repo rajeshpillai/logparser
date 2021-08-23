@@ -41,7 +41,7 @@ function parseLogs(logs) {
     if (line.textPayload) {
       let item = _parseItem(line.textPayload.substr(line.textPayload.indexOf("stdout:") + 7));
       let parsedItem =  { 
-        timestamp: line.timestamp,
+        timestamp:  moment.utc(line.timestamp).local().format('YYYY-MM-DD HH:mm:ss'),
         item: item,
         method: item[0].split("=")[1],
         path: item[1].split("=")[1],
