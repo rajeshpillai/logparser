@@ -54,6 +54,7 @@
                 <tr>
                   <th >Date(IST)</th>
                   <th>Time</th>
+                  <th>IP Address</th>
                   <th>HTTP Method</th>
                   <th>Url</th>
                   <th>Controller</th>
@@ -68,6 +69,9 @@
                       </td>
                       <td>
                         <%= log.time%>
+                      </td>
+                      <td style="display: inline-block; width: 150px;">
+                        <%= log.ip%>
                       </td>
                       <td>
                         <%= log.method %>
@@ -88,6 +92,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Ip</th>
                     <th>Method</th>
                     <th>Url</th>
                     <th>Controller</th>

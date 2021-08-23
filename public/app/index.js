@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  fetchData(window.location.pathname);
   window.onpopstate = () => {
     fetchData(window.location.pathname);
   }
@@ -13,6 +14,7 @@ $(document).ready(function() {
     columns: [
       { data: 'date' },
       { data: 'time' },
+      { data: 'ip' },
       { data: 'method' },
       { data: 'path' },
       { data: 'controller' },
@@ -49,7 +51,13 @@ $(function () {
 });
 
 function fetchData(url) {
-  fetch(url)
+  const options = {
+    method: "GET",
+    headers: new Headers({'content-type': 'application/json'}),
+    mode: 'cors'
+  };
+
+  fetch(url, options)
     .then(function(response) {
       return response.json();
     }).then(function(data) {  

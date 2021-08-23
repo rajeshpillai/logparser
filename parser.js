@@ -2,8 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const moment = require("moment");
 const _ = require("lodash");
-//const logFile = require("./data//k8s_container_cluster_name_dc-prod-cluster-1_namespace_name_idfy-ops-prod_container_name_idfy-app__logs__2021-08-20T11-44.json");
-// const logFile = require("./data/hrportal-prod_2021-08-23T11-20.json");
 
 var items = [];
 
@@ -24,7 +22,8 @@ function _timeAndPath(item) {
     path: path,
     query: query,
     method: item[0],
-    controller: item[3]
+    controller: item[3],
+    ip: item[11],
   }
 
   console.log(result);
@@ -37,13 +36,18 @@ const monthName = item => {
 }
 
 function parseLogs(logs) {
-  items = [];
-  logs.map((line) => {
+  //items = [];
+  items = logs.map((line) => {
     if (line.textPayload) {
       let item = _parseItem(line.textPayload.substr(line.textPayload.indexOf("stdout:") + 7));
 
       let query = item[1] ? item[1].split("/").filter(Boolean) : "";
       query = query ? query : "";
+
+      let ip =  item[11] ? item[11] : "<not found>";  //item[11] ? item[11].split("=")[0] : "",
+
+      console.log("Query: ", query);
+      console.log(item.length);
 
       let parsedItem =  { 
         timestamp:  moment.utc(line.timestamp).local().format('DD-MM-YYYY HH:mm:ss'),
@@ -54,9 +58,12 @@ function parseLogs(logs) {
         path: item[1].split("=")[1] ? item[1].split("=")[1] : "",
         query: query,
         controller: item[3].split("=")[1] ? item[3].split("=")[1] : "",
+        ip: ip
       }
-      items.push(parsedItem);
+      //items.push(parsedItem);
+      return parsedItem;
     }
+
   });
 
   // let results = 

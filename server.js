@@ -32,10 +32,6 @@ function readLogFiles(dirname) {
 
 let files = [];
 
-app.get("/", function (req, res, next) {
-  files = readLogFiles(path.join(__dirname,"data"));
-  res.render("index", {files, logs: []});
-});
 
 
 // Full render
@@ -49,16 +45,24 @@ app.get("/", function (req, res, next) {
 
 // AJAX
 app.get('/logs/:file', function (req, res,next) {
+  var isAjax = (req.xhr || req.headers.accept.indexOf('json') > -1 || req.headers["content-type"] == 'application/json') ? true : false;
   files = readLogFiles(path.join(__dirname,"data"));
   let file = req.params.file;
   let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
   logs = parseLog(JSON.parse(content));
-  res.json(logs);
+  if (isAjax) return res.json(logs);
+  res.render("index", {files, logs});
 });
 
 
-app.get('/logs', function (req, res, next) {
-  res.json(logs)
+// app.get('/logs', function (req, res, next) {
+//   res.json(logs)
+// });
+
+app.get("*", function (req, res, next) {
+  console.log("**** CATCH ALL ***");
+  files = readLogFiles(path.join(__dirname,"data"));
+  res.render("index", {files, logs: []});
 });
 
 
