@@ -1,7 +1,8 @@
+const fs = require("fs");
+const path = require('path');
 var express = require("express");
 var cors = require('cors');
 var app = express();
-const path = require('path');
 var bodyParser = require('body-parser');
 var logs = require("./parser.js");
 
@@ -11,36 +12,43 @@ let port = 4000;
 app.use(cors());
 
 app.set('view engine', 'ejs');
+// app.set('view options', { layout: 'layout' });
 
 app.use(express.static('public'));
 app.use('/scripts', express.static(__dirname + '/node_modules/'))
 
-// parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }))
 
-// parse application/json
-// app.use(bodyParser.json())
+function readLogFiles(dirname) {
+  const result = [];
+  console.log("Reading: ", dirname);
+  fs.readdirSync(dirname).forEach(function(filename) {
+    if (path.extname(filename) === ".json")  {
+      result.push(filename);
+    }
+  });
+  return result;
+}
 
+
+let files = [];
 app.get("/", function (req, res, next) {
-  //res.sendFile("index.html");
-  res.render("index", {logs});
+  files = readLogFiles(path.join(__dirname,"data"));
+  console.log("FILE NAMES: ", files);
+  res.render("index", {files, logs});
 });
+
 
 app.get('/logs', function (req, res, next) {
   res.json(logs)
 });
 
 
-app.get('/users/:id', function (req, res, next) {
-  //let user = users[req.params.id];
-  res.json("ok")
-});
 
-
-app.patch('/users/:id', function (req, res,next) {
-  console.log("PATCH: ", req.body, req.params);
-
-  users[req.params.id].name = req.body.name;  // update (only for demo)
+app.get('/logs/:file', function (req, res,next) {
+  let file = req.params.file;
+  let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
+  console.log("GET: ", req.params, content);
+  res.json(JSON.parse(content));
 });
 
 
