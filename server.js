@@ -39,16 +39,16 @@ app.get("/", function (req, res, next) {
 
 
 // Full render
-app.get('/logs/:file', function (req, res,next) {
-  files = readLogFiles(path.join(__dirname,"data"));
-  let file = req.params.file;
-  let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
-  logs = parseLog(JSON.parse(content));
-  res.render("index", {files, logs});
-});
+// app.get('/logs/:file', function (req, res,next) {
+//   files = readLogFiles(path.join(__dirname,"data"));
+//   let file = req.params.file;
+//   let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
+//   logs = parseLog(JSON.parse(content));
+//   res.render("index", {files, logs});
+// });
 
 // AJAX
-app.get('/logs2/:file', function (req, res,next) {
+app.get('/logs/:file', function (req, res,next) {
   files = readLogFiles(path.join(__dirname,"data"));
   let file = req.params.file;
   let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');

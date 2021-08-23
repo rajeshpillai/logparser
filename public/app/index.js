@@ -1,6 +1,5 @@
 $(document).ready(function() {
   window.onpopstate = () => {
-    alert(window.location.pathname);
     fetchData(window.location.pathname);
   }
   
@@ -15,7 +14,7 @@ $(document).ready(function() {
       { data: 'date' },
       { data: 'time' },
       { data: 'method' },
-      { data: 'url' },
+      { data: 'path' },
       { data: 'controller' },
       { data: 'query' }
     ],

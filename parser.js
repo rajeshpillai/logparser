@@ -41,15 +41,19 @@ function parseLogs(logs) {
   logs.map((line) => {
     if (line.textPayload) {
       let item = _parseItem(line.textPayload.substr(line.textPayload.indexOf("stdout:") + 7));
+
+      let query = item[1] ? item[1].split("/").filter(Boolean) : "";
+      query = query ? query : "";
+
       let parsedItem =  { 
         timestamp:  moment.utc(line.timestamp).local().format('DD-MM-YYYY HH:mm:ss'),
         date:  moment.utc(line.timestamp).local().format('DD-MM-YYYY'),
         time:  moment.utc(line.timestamp).local().format('HH:mm:ss'),
         item: item,
-        method: item[0].split("=")[1],
-        path: item[1].split("=")[1],
-        query: item[1] && item[1].split("=")[1]?.split("/").filter(Boolean),
-        controller: item[3].split("=")[1]
+        method: item[0].split("=")[1] ? item[0].split("=")[1] : "",
+        path: item[1].split("=")[1] ? item[1].split("=")[1] : "",
+        query: query,
+        controller: item[3].split("=")[1] ? item[3].split("=")[1] : "",
       }
       items.push(parsedItem);
     }
