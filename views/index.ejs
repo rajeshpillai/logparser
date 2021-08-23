@@ -39,6 +39,7 @@
                 <th>Date(IST)</th>
                 <th>HTTP Method</th>
                 <th>Url</th>
+                <th>Query</th>
                 <th>Controller</th>
               </tr>
             </thead>
@@ -53,6 +54,9 @@
                     </td>
                     <td>
                       <%= log.path %>
+                    </td>
+                    <td>
+                      <%= log.query %>
                     </td>
                     <td>
                       <%= log.controller %>
