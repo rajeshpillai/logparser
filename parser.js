@@ -35,6 +35,17 @@ const monthName = item => {
   return moment(new Date(item.timestamp), 'YYYY-MM-DD').format('MMM-YYYY');
 }
 
+function scanIp(item) {
+  console.log("Scanning for IP...", item[11]);
+  for(let i = 0; i < item.length; i++) {
+    if (item[i].startsWith("ip=")) {
+      // console.log("Found IP: ", item[i]);
+      return item[i].split("=")[1];
+    } 
+  }
+  return "<no ip address>";
+}
+
 function parseLogs(logs) {
   //items = [];
   items = logs.map((line) => {
@@ -43,11 +54,9 @@ function parseLogs(logs) {
 
       let query = item[1] ? item[1].split("/").filter(Boolean) : "";
       query = query ? query : "";
+      
+      ip = scanIp(item);
 
-      let ip =  item[11] ? item[11] : "<not found>";  //item[11] ? item[11].split("=")[0] : "",
-
-      console.log("Query: ", query);
-      console.log(item.length);
 
       let parsedItem =  { 
         timestamp:  moment.utc(line.timestamp).local().format('DD-MM-YYYY HH:mm:ss'),
