@@ -15,7 +15,7 @@ app.use(cors());
 app.set('view engine', 'ejs');
 // app.set('view options', { layout: 'layout' });
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules/'))
 
 
@@ -32,10 +32,10 @@ function readLogFiles(dirname) {
 
 
 let files = [];
+
 app.get("/", function (req, res, next) {
   files = readLogFiles(path.join(__dirname,"data"));
-  console.log("FILE NAMES: ", files);
-  res.render("index", {files, logs});
+  res.render("index", {files, logs: []});
 });
 
 
@@ -44,8 +44,8 @@ app.get('/logs/:file', function (req, res,next) {
   files = readLogFiles(path.join(__dirname,"data"));
   let file = req.params.file;
   let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
-  console.log("GET: ", req.params, content);
   logs = parseLog(JSON.parse(content));
+  console.log("LOGS: ", logs);
   res.render("index", {files, logs});
 });
 

@@ -19,7 +19,6 @@ function _timeAndPath(item) {
 
   let query = path ? path.split("/").filter(Boolean) : "";
 
-  
   return {timestamp, path, query};
 }
 
@@ -40,12 +39,13 @@ function parseLogs(logs) {
     }
   });
 
-  let results = 
-  _(items)
-    .groupBy(monthName)
-    .mapValues(items => _.map(items, _timeAndPath))
-    .value();
-  return results;
+  // let results = 
+  // _(items)
+  //   .groupBy(monthName)
+  //   .mapValues(items => _.map(items, _timeAndPath))
+  //   .value();
+
+  return items;
 }
 
 //let results = parseLogs(logFile);
