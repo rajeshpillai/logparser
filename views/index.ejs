@@ -9,8 +9,14 @@
 
   <title>Access Log Parser</title>
   <style>
-    .actie {
+    .active {
       border-bottom: 1px dashed gray;
+    }
+
+    .ui.table thead tr:first-child > th {
+     position: sticky !important;
+     top: 0;
+     z-index: 2;
     }
   </style>
 </head>
@@ -33,38 +39,40 @@
         
         <div class="twelve wide column">
           <h4 class="ui header">LOGS</h4>
-          <table class="ui sortable celled compact table">
-            <thead>
-              <tr>
-                <th>Date(IST)</th>
-                <th>HTTP Method</th>
-                <th>Url</th>
-                <th>Query</th>
-                <th>Controller</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% logs.forEach(log => { %>
-                  <tr>
-                    <td>
-                      <%= log.timestamp%>
-                    </td>
-                    <td>
-                      <%= log.method %>
-                    </td>
-                    <td>
-                      <%= log.path %>
-                    </td>
-                    <td>
-                      <%= log.query %>
-                    </td>
-                    <td>
-                      <%= log.controller %>
-                    </td>
-                  </tr>
-              <% }) %>
-            </tbody>
-          </table>
+          <div class="ui grid" style="width:100%;overflow-x:auto">
+            <table class="ui sortable celled compact table" >
+              <thead>
+                <tr>
+                  <th>Date(IST)</th>
+                  <th>HTTP Method</th>
+                  <th>Url</th>
+                  <th>Controller</th>
+                  <th>Query</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% logs.forEach(log => { %>
+                    <tr>
+                      <td>
+                        <%= log.timestamp%>
+                      </td>
+                      <td>
+                        <%= log.method %>
+                      </td>
+                      <td>
+                        <%= log.path %>
+                      </td>
+                      <td>
+                        <%= log.controller %>
+                      </td>
+                      <td>
+                        <%= log.query %>
+                      </td>
+                    </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

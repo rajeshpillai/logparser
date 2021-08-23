@@ -45,7 +45,7 @@ function parseLogs(logs) {
         item: item,
         method: item[0].split("=")[1],
         path: item[1].split("=")[1],
-        query: item[1].split("=")[1].split("/").filter(Boolean),
+        query: item[1] && item[1].split("=")[1]?.split("/").filter(Boolean),
         controller: item[3].split("=")[1]
       }
       items.push(parsedItem);
