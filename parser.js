@@ -3,7 +3,7 @@ const path = require("path");
 const moment = require("moment");
 const _ = require("lodash");
 //const logFile = require("./data//k8s_container_cluster_name_dc-prod-cluster-1_namespace_name_idfy-ops-prod_container_name_idfy-app__logs__2021-08-20T11-44.json");
-const logFile = require("./data/hrportal-prod_2021-08-23T11-20.json");
+// const logFile = require("./data/hrportal-prod_2021-08-23T11-20.json");
 
 const items = [];
 
@@ -23,9 +23,12 @@ function _timeAndPath(item) {
   return {timestamp, path, query};
 }
 
+const monthName = item => { 
+  return moment(new Date(item.timestamp), 'YYYY-MM-DD').format('MMM-YYYY');
+}
 
-function parseLogs(log) {
-  logFile.map((line) => {
+function parseLogs(logs) {
+  logs.map((line) => {
     if (line.textPayload) {
       let item = line.textPayload.substr(line.textPayload.indexOf("stdout:") + 7);
       let parsedItem =  { 
@@ -36,22 +39,17 @@ function parseLogs(log) {
       items.push(parsedItem);
     }
   });
-}
 
-parseLogs(logFile);
-
-const monthName = item => { 
-  return moment(new Date(item.timestamp), 'YYYY-MM-DD').format('MMM-YYYY');
-}
-let results = 
+  let results = 
   _(items)
     .groupBy(monthName)
     .mapValues(items => _.map(items, _timeAndPath))
     .value();
+  return results;
+}
 
-// console.log(results);
+//let results = parseLogs(logFile);
 
-// module.exports = items.map(timeAndPath);
-module.exports = results;
+module.exports = parseLogs;
 
 
