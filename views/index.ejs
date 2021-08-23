@@ -16,11 +16,10 @@
       <div class="ui grid">
         <div class="four wide column">
           <h4 class="ui header">LOG FILES</h4>
-          <div class="ui large vertical menu">
+          <div class="ui ordered list">
             <% for (const file of files) { %>
               <a class="item blue" href="/logs/<%= file %>">
                 <%= file %>
-                <div class="ui label">...</div>
               </a>
             <% } %>
           </div>
