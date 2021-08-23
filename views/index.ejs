@@ -52,7 +52,7 @@
         </div>
         
         <div class="col-9">
-          <h4 class="header">LOGS</h4>
+          <h4 class="header" id="log-title">LOGS</h4>
           <div class="table-responsive" style="overflow-x:auto">
             <table id="logs" class="table table-bordered table-sm" >
               <thead>
@@ -121,18 +121,6 @@
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
   <script type="text/javascript" src="/app/index.js"></script>
 
-  <script type="text/javascript">
-
-    $(function($) {
-     var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
-     $('.files a').each(function() {
-      if (this.href === path) {
-       $(this).addClass('active');
-      }
-     });
-    });
-   
-  </script>
 </body>
 </html>
 

@@ -1,3 +1,15 @@
+// Set active links
+$(function($) {
+  var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+  $('.files a').each(function() {
+    console.log(this.href, path);
+   if (this.href === path) {
+    $(this).toggleClass('active');
+    $("#log-title").innerHTML = "LOGS - " + path;
+   }
+  });
+});
+
 $(document).ready(function() {
   fetchData(window.location.pathname);
   window.onpopstate = () => {
@@ -40,6 +52,17 @@ $(document).ready(function() {
 $(function () {
   $(".file-name").on("click", function (e) {
     e.preventDefault();
+    let target = e.target;
+
+    $('.files a').each(function() {
+      $(this).removeClass('active');
+    });
+    $(target).toggleClass('active');
+
+    let logName = target.href.substr(target.href.lastIndexOf('/') + 1);
+
+    $("#log-title").html(`LOGS -  ${logName} >`);
+
     window.history.pushState(
       {},
       e.target.href,
