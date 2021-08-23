@@ -43,7 +43,12 @@
                 </a>
               </li>
             <% } %>
-            </ol>
+          </ol>
+          <% if (files.length === 0) { %>
+            <div class="alert text-danger">
+              No log files found. Copy your log files to the "data" folder and try again!
+            </div>
+          <% } %>
         </div>
         
         <div class="col-9">
