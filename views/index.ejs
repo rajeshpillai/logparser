@@ -80,6 +80,16 @@
                     </tr>
                 <% }) %>
               </tbody>
+              <tfoot>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Method</th>
+                    <th>Url</th>
+                    <th>Controller</th>
+                    <th>Query</th>
+                </tr>
+            </tfoot>
             </table>
           </div>
         </div>
@@ -111,7 +121,26 @@
     });
 
     $(document).ready(function() {
-      $('#logs').DataTable();
+      $('#logs tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+      });
+ 
+      $('#logs').DataTable({
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+      });
     });
   </script>
 </body>
