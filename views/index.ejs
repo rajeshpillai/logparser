@@ -22,6 +22,10 @@
      top: 0;
      z-index: 2;
     }
+
+    .file-item {
+      padding: 5px;
+    }
   </style>
 </head>
 <body>
@@ -33,7 +37,7 @@
           <h4 class="ui header">LOG FILES</h4>
           <ol class="files ui ordered list">
             <% for (const file of files) { %>
-              <li>
+              <li class="file-item">
                 <a class="blue" href="/logs/<%= file %>">
                   <%= file %>
                 </a>
