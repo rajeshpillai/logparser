@@ -14,11 +14,17 @@
     <div class="ui container">
       <h1 class="ui header">Access Log Parser</h1>
       <div class="ui grid">
-        <nav class="four wide column">
-          <% for (const file of files) { %>
-            <div><a href="/logs/<%= file %>"><%= file %></a></div>
-          <% } %>
-        </nav>
+        <div class="four wide column">
+          <h4 class="ui header">LOG FILES</h4>
+          <div class="ui large vertical menu">
+            <% for (const file of files) { %>
+              <a class="item blue" href="/logs/<%= file %>">
+                <%= file %>
+                <div class="ui label">...</div>
+              </a>
+            <% } %>
+          </div>
+        </div>
         
         <div class="twelve wide column">
           <table class="ui sortable celled padded table">
