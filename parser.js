@@ -5,7 +5,7 @@ const _ = require("lodash");
 //const logFile = require("./data//k8s_container_cluster_name_dc-prod-cluster-1_namespace_name_idfy-ops-prod_container_name_idfy-app__logs__2021-08-20T11-44.json");
 // const logFile = require("./data/hrportal-prod_2021-08-23T11-20.json");
 
-const items = [];
+var items = [];
 
 
 function _parseItem(item) {
@@ -37,6 +37,7 @@ const monthName = item => {
 }
 
 function parseLogs(logs) {
+  items = [];
   logs.map((line) => {
     if (line.textPayload) {
       let item = _parseItem(line.textPayload.substr(line.textPayload.indexOf("stdout:") + 7));
