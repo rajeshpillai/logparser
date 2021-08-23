@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  window.onpopstate = () => {
+    alert(window.location.pathname);
+    fetchData(window.location.pathname);
+  }
+  
   $('#logs tfoot th').each( function () {
     var title = $(this).text();
     $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
@@ -34,16 +39,26 @@ $(document).ready(function() {
 $(function () {
   $(".file-name").on("click", function (e) {
     e.preventDefault();
-    fetch(e.target.href)
-      .then(function(response) {
-        return response.json();
-      }).then(function(data) {  
-        refreshData(data);
-      });
+    window.history.pushState(
+      {},
+      e.target.href,
+      e.target.href
+    )
+
+    fetchData(e.target.href);
   });
 });
 
-function refreshData(data) {
+function fetchData(url) {
+  fetch(url)
+    .then(function(response) {
+      return response.json();
+    }).then(function(data) {  
+      refreshDataTable(data);
+    });
+}
+
+function refreshDataTable(data) {
   var dataTable = $("#logs").DataTable();
   dataTable.clear().draw();
   dataTable.rows.add(data).draw();
