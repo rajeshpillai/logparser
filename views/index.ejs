@@ -9,12 +9,19 @@
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css"/>
+
   <title>Access Log Parser</title>
   <style>
     .active {
       border-bottom: 1px dashed gray;
     }
-   
+
+    .ui.table thead tr:first-child > th {
+     position: sticky !important;
+     top: 0;
+     z-index: 2;
+    }
   </style>
 </head>
 <body>
@@ -37,8 +44,8 @@
         
         <div class="col-9">
           <h4 class="header">LOGS</h4>
-          <div class="table-responsive" style="overflow-x:auto;height:80vh">
-            <table class="table table-bordered table-sm" >
+          <div class="table-responsive" style="overflow-x:auto">
+            <table id="logs" class="table table-bordered table-sm" >
               <thead>
                 <tr>
                   <th >Date(IST)</th>
@@ -87,6 +94,10 @@
   <script src="/scripts/lodash/lodash.js"></script>
   <script src="/scripts/moment/moment.js"></script>
 
+ 
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+
+
   <script type="text/javascript">
     $('table').tablesort();
 
@@ -97,6 +108,10 @@
        $(this).addClass('active');
       }
      });
+    });
+
+    $(document).ready(function() {
+      $('#logs').DataTable();
     });
   </script>
 </body>
