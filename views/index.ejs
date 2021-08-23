@@ -33,12 +33,13 @@
         
         <div class="twelve wide column">
           <h4 class="ui header">LOGS</h4>
-          <table class="ui sortable celled padded table">
+          <table class="ui sortable celled compact table">
             <thead>
               <tr>
                 <th>Date</th>
                 <th>HTTP Method</th>
                 <th>Url</th>
+                <th>Controller</th>
               </tr>
             </thead>
             <tbody>
@@ -48,10 +49,13 @@
                       <%= log.timestamp%>
                     </td>
                     <td>
-                      <%= log.item[0] %>
+                      <%= log.method %>
                     </td>
                     <td>
-                      <%= log.item[1] %>
+                      <%= log.path %>
+                    </td>
+                    <td>
+                      <%= log.controller %>
                     </td>
                   </tr>
               <% }) %>

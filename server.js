@@ -21,7 +21,6 @@ app.use('/scripts', express.static(__dirname + '/node_modules/'))
 
 function readLogFiles(dirname) {
   const result = [];
-  console.log("Reading: ", dirname);
   fs.readdirSync(dirname).forEach(function(filename) {
     if (path.extname(filename) === ".json")  {
       result.push(filename);
@@ -45,7 +44,7 @@ app.get('/logs/:file', function (req, res,next) {
   let file = req.params.file;
   let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
   logs = parseLog(JSON.parse(content));
-  console.log("LOGS: ", logs);
+  // console.log("LOGS: ", logs);
   res.render("index", {files, logs});
 });
 

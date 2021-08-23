@@ -19,6 +19,16 @@ function _timeAndPath(item) {
 
   let query = path ? path.split("/").filter(Boolean) : "";
 
+  let result = {
+    timestamp: timestamp,
+    path: path,
+    query: query,
+    method: item[0],
+    controller: item[3]
+  }
+
+  console.log(result);
+
   return {timestamp, path, query, method: item.item[0]};
 }
 
@@ -29,12 +39,14 @@ const monthName = item => {
 function parseLogs(logs) {
   logs.map((line) => {
     if (line.textPayload) {
-      let item = line.textPayload.substr(line.textPayload.indexOf("stdout:") + 7);
+      let item = _parseItem(line.textPayload.substr(line.textPayload.indexOf("stdout:") + 7));
       let parsedItem =  { 
         timestamp: line.timestamp,
-        item: _parseItem(item)
+        item: item,
+        method: item[0].split("=")[1],
+        path: item[1].split("=")[1],
+        controller: item[3].split("=")[1]
       }
-
       items.push(parsedItem);
     }
   });
@@ -47,9 +59,6 @@ function parseLogs(logs) {
 
   return items;
 }
-
-//let results = parseLogs(logFile);
-
 module.exports = parseLogs;
 
 
