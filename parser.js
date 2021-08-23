@@ -19,7 +19,7 @@ function _timeAndPath(item) {
 
   let query = path ? path.split("/").filter(Boolean) : "";
 
-  return {timestamp, path, query};
+  return {timestamp, path, query, method: item.item[0]};
 }
 
 const monthName = item => { 
