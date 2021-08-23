@@ -8,15 +8,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <title>Access Log Parser</title>
+  <style>
+    .actie {
+      border-bottom: 1px dashed gray;
+    }
+  </style>
 </head>
 <body>
   <div id="root">
     <div class="ui container">
       <h1 class="ui header">Access Log Parser</h1>
+      <hr/>
       <div class="ui grid">
         <div class="four wide column">
           <h4 class="ui header">LOG FILES</h4>
-          <div class="ui ordered list">
+          <div class="files ui ordered list">
             <% for (const file of files) { %>
               <a class="item blue" href="/logs/<%= file %>">
                 <%= file %>
@@ -60,6 +66,15 @@
 
   <script type="text/javascript">
     $('table').tablesort();
+
+    $(function($) {
+     var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+     $('.files a').each(function() {
+      if (this.href === path) {
+       $(this).addClass('active');
+      }
+     });
+    });
   </script>
 </body>
 </html>
