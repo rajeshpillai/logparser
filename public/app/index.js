@@ -122,4 +122,24 @@ function refreshDataTable(data) {
   dataTable.rows.add(data.items);
 
   dataTable.columns.adjust().draw();
+
+  refreshStats(data.stats_controller);
+}
+
+function refreshStats(stats) {
+  console.log("Loading stats...");
+  let stats_c = $("#stats_controller");
+  
+  let ui = ``;
+  for (var key of Object.keys(stats)) {
+    console.log(key + " -> " + stats[key])
+    ui += `
+      <div class="stats-item">
+        <h6>${key}</h6>
+        <div>${stats[key]}</div>
+      </div>
+    `
+  }
+
+  stats_c.html(`<div class="stats-container">${ui}</div>`);
 }

@@ -62,11 +62,27 @@
       overflow-y: auto;
     }
 
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stats-item {
+      text-transform: uppercase;
+      border: 1px solid gray;
+      margin: 3px;
+      padding: 3px;
+      text-align: center;
+      border-radius: 3px;
+    }
+
   </style>
 </head>
 <body>
   <h3 class="ui header text-light  p-2 "><a class="home-link" href="/">IDfy Log Parser</a></h3>
   <div id="root" class="container-fluid">
+      
       <div class="row">
         <div class="files-container col-3">
           <h4 class="ui header-sidebar">LOG FILES</h4>
@@ -88,6 +104,7 @@
         
         <div class="col-9">
           <h4 class="header2" id="log-title">LOGS</h4>
+          <div id="stats_controller"></div>
           <div class="table-responsive" style="overflow-x:auto">
             <table id="logs" class="table table-bordered table-sm" style="width:100%" >
               <thead>
