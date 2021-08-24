@@ -36,7 +36,7 @@ const monthName = item => {
 }
 
 function scanIp(item) {
-  console.log("Scanning for IP...", item[11]);
+  // console.log("Scanning for IP...", item[11]);
   for(let i = 0; i < item.length; i++) {
     if (item[i].startsWith("ip=")) {
       // console.log("Found IP: ", item[i]);
