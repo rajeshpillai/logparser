@@ -15,14 +15,23 @@ $(document).ready(function() {
   window.onpopstate = () => {
     fetchData(window.location.pathname);
   }
-  
-  $('#logs tfoot th').each( function () {
-    var title = $(this).text();
-    $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+  // Setup - add a text input to each footer cell
+  $('#logs thead tr').clone(true).appendTo( '#logs thead' );
+  $('#logs thead tr:eq(1) th').each( function (i) {
+      var title = $(this).text();
+      $(this).html( `<input type="text" data-col=${i} class="col-search" placeholder="Search ${title}" />` );
+      
   });
+  
+  // $('#logs tfoot th').each( function () {
+  //   var title = $(this).text();
+  //   $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+  // });
 
   $('#logs').DataTable({
     data: [],
+    orderCellsTop: true,
     columns: [
       { data: 'date' },
       { data: 'time' },
@@ -41,18 +50,14 @@ $(document).ready(function() {
     fixedColumns: true,
 
     initComplete: function () {
+      var table = this;
       // Apply the search
-      this.api().columns().every( function () {
-          var that = this;
-          $( 'input', this.footer() ).on( 'keyup change clear', function (e) {
-              console.log(e.target.value);
-              if ( that.search() !== this.value ) {
-                  that
-                      .search( this.value )
-                      .draw();
-              }
-          } );
-      } );
+      //$("#logs").DataTable().column(1).search("19:09").draw()
+      $(".col-search").on( 'keyup change clear', function(e) {
+        e.stopImmediatePropagation();
+        let colIndex = $(this).data("col");
+        $("#logs").DataTable().column(colIndex).search(e.target.value).draw()
+      });
     }
   });
 })
