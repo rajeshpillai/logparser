@@ -1,8 +1,3 @@
-// Utility functions 
-const showLoading = function() {
- 
-};
-
 // Set active links
 $(function($) {
   var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
@@ -37,6 +32,14 @@ $(document).ready(function() {
       { data: 'controller' },
       { data: 'query' }
     ],
+    scrollY:        "300px",
+    scrollX:        true,
+    scrollCollapse: true,
+    columnDefs: [
+      { width: '10%', targets: 0 }
+    ],
+    fixedColumns: true,
+
     initComplete: function () {
       // Apply the search
       this.api().columns().every( function () {
@@ -110,5 +113,8 @@ function fetchData(url) {
 function refreshDataTable(data) {
   var dataTable = $("#logs").DataTable();
   dataTable.clear().draw();
-  dataTable.rows.add(data).draw();
+  //dataTable.rows.add(data).draw();
+  dataTable.rows.add(data);
+
+  dataTable.columns.adjust().draw();
 }

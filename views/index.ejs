@@ -17,11 +17,6 @@
       border-bottom: 1px dashed gray;
     }
 
-    .ui.table thead tr:first-child > th {
-     position: sticky !important;
-     top: 0;
-     z-index: 2;
-    }
 
     .file-item {
       padding: 5px;
@@ -33,6 +28,16 @@
       padding: 3px;
       border-radius: 3px;
     }
+
+    table{
+      margin: 0 auto;
+      width: 100%;
+      clear: both;
+      border-collapse: collapse;
+      table-layout: fixed; 
+      word-wrap:break-word; 
+    }
+
   </style>
 </head>
 <body>
@@ -61,10 +66,10 @@
         <div class="col-9">
           <h4 class="header" id="log-title">LOGS</h4>
           <div class="table-responsive" style="overflow-x:auto">
-            <table id="logs" class="table table-bordered table-sm" >
+            <table id="logs" class="table table-bordered table-sm" style="width:100%" >
               <thead>
                 <tr>
-                  <th >Date(IST)</th>
+                  <th>Date(IST)</th>
                   <th>Time</th>
                   <th>IP Address</th>
                   <th>HTTP Method</th>
@@ -76,13 +81,13 @@
               <tbody>
                 <% logs.forEach(log => { %>
                     <tr>
-                      <td style="display: inline-block; width: 110px;">
+                      <td>
                         <%= log.date %>
                       </td>
                       <td>
                         <%= log.time%>
                       </td>
-                      <td style="display: inline-block; width: 150px;">
+                      <td>
                         <%= log.ip%>
                       </td>
                       <td>
