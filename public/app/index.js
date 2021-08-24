@@ -129,8 +129,9 @@ function refreshDataTable(data) {
 function refreshStats(stats) {
   console.log("Loading stats...");
   let stats_c = $("#stats_controller");
-  
+  stats_c.html("");
   let ui = ``;
+
   for (var key of Object.keys(stats)) {
     console.log(key + " -> " + stats[key])
     ui += `
