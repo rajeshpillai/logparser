@@ -39,14 +39,13 @@ $(document).ready(function() {
       { data: 'method' },
       { data: 'path' },
       { data: 'controller' },
-      { data: 'query' }
     ],
     scrollY:        "300px",
     scrollX:        true,
     scrollCollapse: true,
-    columnDefs: [
-      { width: '10%', targets: 0 }
-    ],
+    // columnDefs: [
+    //   { width: '10%', targets: 0 }
+    // ],
     fixedColumns: true,
 
     initComplete: function () {
