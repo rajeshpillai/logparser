@@ -13,6 +13,8 @@
 
   <title>Access Log Parser</title>
   <style>
+    body {
+    }
     .active {
       border-bottom: 1px dashed gray;
       color: #AD301A;
@@ -22,7 +24,15 @@
       background: #AD301A;
       color: white;
       padding: 3px;
-      border-radius: 3px;
+      /* border-radius: 3px; */
+    }
+
+    .header2 {
+
+    }
+    
+    .header-sidebar {
+      color: black;
     }
 
 
@@ -31,9 +41,10 @@
     }
 
     .home-link {
-      background: white;
+      /* background: white; */
       text-decoration: none;
       padding: 3px;
+      color: white;
       border-radius: 3px;
     }
 
@@ -46,15 +57,19 @@
       word-wrap:break-word; 
     }
 
+    .files-container  {
+      height: 100vh;
+      overflow-y: auto;
+    }
+
   </style>
 </head>
 <body>
   <h3 class="ui header text-light  p-2 "><a class="home-link" href="/">IDfy Log Parser</a></h3>
   <div id="root" class="container-fluid">
-      <hr/>
       <div class="row">
-        <div class="col-3">
-          <h4 class="ui header">LOG FILES</h4>
+        <div class="files-container col-3">
+          <h4 class="ui header-sidebar">LOG FILES</h4>
           <ol class="files ui ordered list">
             <% for (const file of files) { %>
               <li class="file-item">
@@ -72,7 +87,7 @@
         </div>
         
         <div class="col-9">
-          <h4 class="header" id="log-title">LOGS</h4>
+          <h4 class="header2" id="log-title">LOGS</h4>
           <div class="table-responsive" style="overflow-x:auto">
             <table id="logs" class="table table-bordered table-sm" style="width:100%" >
               <thead>
