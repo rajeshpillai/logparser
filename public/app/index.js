@@ -29,7 +29,7 @@ $(document).ready(function() {
   //   $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
   // });
 
-  $('#logs').DataTable({
+  $('#logs').removeAttr("width").DataTable({
     data: [],
     orderCellsTop: true,
     columns: [
