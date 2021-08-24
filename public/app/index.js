@@ -136,7 +136,7 @@ function refreshStats(stats) {
     console.log(key + " -> " + stats[key])
     ui += `
       <div class="stats-item">
-        <div>${stats[key]}</div>
+        <h4>${stats[key]}</h4>
         <h6>${key}</h6>
       </div>
     `
