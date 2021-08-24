@@ -1,3 +1,8 @@
+// Utility functions 
+const showLoading = function() {
+ 
+};
+
 // Set active links
 $(function($) {
   var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
@@ -74,18 +79,32 @@ $(function () {
 });
 
 function fetchData(url) {
+  if (url == "/") return;
+  Swal.fire({
+    text: "Loading logs....",
+    showCancelButton: false,
+    showConfirmButton: false
+  })
+
   const options = {
     method: "GET",
     headers: new Headers({'content-type': 'application/json'}),
     mode: 'cors'
   };
 
-  fetch(url, options)
+  try {
+    fetch(url, options)
     .then(function(response) {
       return response.json();
     }).then(function(data) {  
       refreshDataTable(data);
+      Swal.close();
     });
+  } catch(e) {
+    Swal.close();
+    alert(e);
+  }
+ 
 }
 
 function refreshDataTable(data) {
