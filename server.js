@@ -61,7 +61,7 @@ app.get('/logs/:file', function (req, res,next) {
   logs = parseLog(JSON.parse(content));
   
   if (isAjax) return res.json(logs);
-  res.render("index", {files, logs});
+  res.render("index", {files, logs: logs.items});
 });
 
 

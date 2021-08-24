@@ -119,7 +119,7 @@ function refreshDataTable(data) {
   var dataTable = $("#logs").DataTable();
   dataTable.clear().draw();
   //dataTable.rows.add(data).draw();
-  dataTable.rows.add(data);
+  dataTable.rows.add(data.items);
 
   dataTable.columns.adjust().draw();
 }

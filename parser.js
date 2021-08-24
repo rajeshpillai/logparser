@@ -81,7 +81,10 @@ function parseLogs(logs) {
   //   .mapValues(items => _.map(items, _timeAndPath))
   //   .value();
 
-  return items;
+  var stats_controller = _.countBy(items, 'controller');
+  console.log({stats_controller});
+
+  return {items, stats_controller};
 }
 module.exports = parseLogs;
 
