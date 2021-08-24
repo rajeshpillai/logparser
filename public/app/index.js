@@ -134,7 +134,7 @@ function refreshStats(stats) {
   for (var key of Object.keys(stats)) {
     console.log(key + " -> " + stats[key])
     ui += `
-      <div class="stats-item">
+      <div class="stats-item animate__animated animate__pulse ">
         <h4 class="kpi">${stats[key]}</h4>
         <h6>${key}</h6>
       </div>

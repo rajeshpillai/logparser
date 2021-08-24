@@ -10,7 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link href="https://cdn.datatables.net/fixedcolumns/3.3.3/css/fixedColumns.bootstrap5.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css"/>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <title>Access Log Parser</title>
   <style>
     body {
@@ -60,6 +60,7 @@
     .files-container  {
       height: 100vh;
       overflow-y: auto;
+      box-shadow: 10px 10px 5px -9px rgba(220,19,19,0.75);
     }
 
     .stats-container {
@@ -125,7 +126,7 @@
         <div class="col-10">
           <h4 class="header2" id="log-title">LOGS</h4>
           <div id="stats_controller"></div>
-          <div class="table-responsive" style="overflow-x:auto">
+          <div class="table-responsive animate__animated animate__pulse" style="overflow-x:auto">
             <table id="logs" class="table table-bordered table-sm" style="width:100%" >
               <thead>
                 <tr>
