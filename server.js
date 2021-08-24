@@ -47,9 +47,19 @@ let files = [];
 app.get('/logs/:file', function (req, res,next) {
   var isAjax = (req.xhr || req.headers.accept.indexOf('json') > -1 || req.headers["content-type"] == 'application/json') ? true : false;
   files = readLogFiles(path.join(__dirname,"data"));
+
   let file = req.params.file;
-  let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
+  
+  let content = undefined;
+  try {
+    content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
+  } catch(e) {
+    landing(res);
+    return;
+  }
+  
   logs = parseLog(JSON.parse(content));
+  
   if (isAjax) return res.json(logs);
   res.render("index", {files, logs});
 });
@@ -60,10 +70,14 @@ app.get('/logs/:file', function (req, res,next) {
 // });
 
 app.get("*", function (req, res, next) {
+  landing(res);
+});
+
+function landing(res) {
   console.log("**** CATCH ALL ***");
   files = readLogFiles(path.join(__dirname,"data"));
   res.render("index", {files, logs: []});
-});
+}
 
 
 app.listen(port, function () {
