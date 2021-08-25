@@ -105,7 +105,7 @@
   <div id="root" class="container-fluid">
       
       <div class="row">
-        <div class="files-container col-2">
+        <div class="files-container col-3">
           <h4 class="ui header-sidebar">LOG FILES</h4>
           <ol class="files ui ordered list">
             <% for (const file of files) { %>
@@ -123,7 +123,7 @@
           <% } %>
         </div>
         
-        <div class="col-10">
+        <div class="col-9">
           <h4 class="header2" id="log-title">LOGS</h4>
           <div id="stats_controller"></div>
           <div class="table-responsive" style="overflow-x:auto">
@@ -179,14 +179,9 @@
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
 
   <script type="text/javascript" src="/app/utils.js"></script>
-  <script src="/dist/bundle.js"></script>
+  <script src="./dist/bundle.js"></script>
   <!-- <script type="text/javascript" src="/app/index.js"></script> -->
 
-  <script>
-    
-    // Load log file
-    
-  </script>
 </body>
 </html>
 

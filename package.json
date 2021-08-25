@@ -5,7 +5,8 @@
   "main": "parser.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack serve"
+    "devserver": "webpack serve",
+    "dev": "webpack --watch"
   },
   "keywords": [],
   "author": "",

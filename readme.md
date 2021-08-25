@@ -10,3 +10,7 @@
   -- nodemon server.js
   -- OR node server.js
 
+
+- Start webpack
+- npm run dev  OR yarn dev
+
