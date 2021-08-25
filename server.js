@@ -74,7 +74,6 @@ app.get("*", function (req, res, next) {
 });
 
 function landing(res) {
-  console.log("**** CATCH ALL ***");
   files = readLogFiles(path.join(__dirname,"data"));
   res.render("index", {files, logs: []});
 }

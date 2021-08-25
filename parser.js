@@ -26,7 +26,7 @@ function _timeAndPath(item) {
     ip: item[11],
   }
 
-  console.log(result);
+  // console.log(result);
 
   return {timestamp, path, query, method: item.item[0]};
 }
@@ -75,14 +75,9 @@ function parseLogs(logs) {
 
   });
 
-  // let results = 
-  // _(items)
-  //   .groupBy(monthName)
-  //   .mapValues(items => _.map(items, _timeAndPath))
-  //   .value();
 
   var stats_controller = _.countBy(items, 'controller');
-  console.log({stats_controller});
+  // console.log({stats_controller});
 
   return {items, stats_controller};
 }
