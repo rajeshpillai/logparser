@@ -84,6 +84,27 @@
 
     }
 
+    ol.files {
+      list-style-type: none;
+    }
+
+    li.file-item {
+      counter-increment: item;
+      margin-bottom: 5px;
+    }
+
+    li.file-item:before {
+    margin-right: 10px;
+    content: counter(item);
+    background: rgba(220,19,19,0.75);
+    border-radius: 50%;
+    color: white;
+    width: 1.6em;
+    height: 1.6em;
+    text-align: center;
+    display: inline-block;
+  }
+
     #stats_controller {
       padding: 4px;
     }
