@@ -62,9 +62,10 @@ export default class LogViewer {
     let ui = ``;
   
     for (var key of Object.keys(stats)) {
+      let normalizedKey = key.replace("/", "-");
       console.log(key + " -> " + stats[key])
       ui += `
-        <div class="stats-item ">
+        <div class="stats-item ${normalizedKey}">
           <h4 class="kpi">${stats[key]}</h4>
           <h6>${key}</h6>
         </div>
