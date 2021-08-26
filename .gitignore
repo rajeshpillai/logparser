@@ -2,4 +2,6 @@ node_modules
 data/*.json 
 data/*.csv
 public/dist/
+.vscode/
+
 

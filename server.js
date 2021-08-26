@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require('path');
 var express = require("express");
 var cors = require('cors');
+const multer = require("multer");
 var app = express();
 var bodyParser = require('body-parser');
 var logs = require("./parser.js");
@@ -33,15 +34,23 @@ function readLogFiles(dirname) {
 let files = [];
 
 
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, 'data/');
+  },
+ 
+  filename: function(req, file, cb) {
+      cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+ 
+var upload = multer({ storage: storage })
+ 
+ 
+app.post('/uploads', upload.array('multi-files'), (req, res) => {  
+  res.redirect('/');
+});
 
-// Full render
-// app.get('/logs/:file', function (req, res,next) {
-//   files = readLogFiles(path.join(__dirname,"data"));
-//   let file = req.params.file;
-//   let content = fs.readFileSync(path.join(__dirname,"data",file), 'utf8');
-//   logs = parseLog(JSON.parse(content));
-//   res.render("index", {files, logs});
-// });
 
 // AJAX
 app.get('/logs/:file', function (req, res,next) {
