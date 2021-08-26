@@ -20,11 +20,22 @@
       color: #AD301A;
     }
 
-    .header {
+    .header-container {
+      display: flex;
       background: #AD301A;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .header {
       color: white;
       padding: 3px;
       /* border-radius: 3px; */
+    }
+
+    .upload-link{
+      margin: 10px;
+      color: #0BF4DE;
     }
 
     .header2 {
@@ -131,7 +142,12 @@
   </style>
 </head>
 <body>
-  <h3 class="ui header text-light  p-2 "><a class="home-link" href="/">IDfy Log Parser</a></h3>
+  <header class="header-container">
+    <h3 class="header p-2 ">
+      <a class="home-link" href="/">IDfy Log Parser</a>
+    </h3>
+    <a class="upload-link" href="#">Upload log files </a>
+  </header>
   <div id="root" class="container-fluid">
       
       <div class="row">
