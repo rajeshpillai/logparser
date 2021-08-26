@@ -4,6 +4,7 @@
   "description": "",
   "main": "parser.js",
   "scripts": {
+    "server": "nodemon server.js --ignore 'data/*.*'",
     "build": "webpack",
     "devserver": "webpack serve",
     "dev": "webpack --watch"

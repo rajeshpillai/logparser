@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules/'))
-
+app.use(express.urlencoded({ extended: false, limit: '2gb' }));
 
 function readLogFiles(dirname) {
   const result = [];
@@ -38,17 +38,25 @@ const storage = multer.diskStorage({
   destination: function(req, file, cb) {
       cb(null, 'data/');
   },
- 
+  limits: {
+    fieldSize: 50 * 1024 * 1024
+  },
   filename: function(req, file, cb) {
       cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
   }
 });
  
-var upload = multer({ storage: storage })
+// var upload = multer({ storage: storage })
+
+var upload = multer({ storage : storage }).array('logFiles',5);
  
- 
-app.post('/uploads', upload.array('multi-files'), (req, res) => {  
-  res.redirect('/');
+app.post('/uploads',(req, res) => {  
+  upload(req,res,function(err) {
+    if(err) {
+        return res.end("Error uploading file. " + err);
+    }
+    res.end("File is uploaded");
+  });
 });
 
 
