@@ -3,12 +3,12 @@
 - git clone
 
 - npm install OR yarn install
-
+- npm install -g nodemon
 - Keep json log file in "./data" folder
 
 - Start the server
-  -- nodemon server.js
-  -- OR node server.js
+  -- yarn server.js
+  -- OR npm run server.js
 
 
 - Start webpack
