@@ -24,6 +24,10 @@ export default class LogViewer {
         e.target.href
       )
 
+      // TODO: Refactor this
+      $("#logs-container").show();
+      $("#chart").hide();
+
       that.fetchData(e.target.href);
     });
   }

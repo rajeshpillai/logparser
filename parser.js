@@ -77,8 +77,7 @@ function parseLogs(logs) {
 
 
   var stats_controller = _.countBy(items, 'controller');
-  // console.log({stats_controller});
-
+  
   return {items, stats_controller};
 }
 module.exports = parseLogs;

@@ -33,9 +33,13 @@
       /* border-radius: 3px; */
     }
 
-    .upload-link{
+    .upload-link, {
       margin: 10px;
       color: #0BF4DE;
+    }
+
+    .dashboard {
+      margin: 10px;
     }
 
     .header-sidebar {
@@ -65,7 +69,8 @@
     }
 
     .files-container  {
-      height: 100vh;
+      height: 100%;
+      min-height: 100vh;
       overflow-y: auto;
       box-shadow: 10px 10px 5px -9px rgba(220,19,19,0.75);
     }
@@ -135,6 +140,9 @@
       max-width: 140px;
     }
 
+    #chart {
+    }
+
   </style>
 </head>
 <body>
@@ -145,10 +153,10 @@
     <a class="upload-link" href="#">Upload log files </a>
   </header>
   <div id="root" class="container-fluid">
-      
       <div class="row">
         <div class="files-container col-3">
           <h4 class="ui header-sidebar">LOG FILES</h4>
+          
           <ol class="files ui ordered list">
             <% for (const file of files) { %>
               <li class="file-item">
@@ -167,8 +175,13 @@
         
         <div class="col-9">
           <h4 id="log-title">LOGS</h4>
+          <a class="logs-link" href="#">Logs</a>
+          <a class="dashboard-link" href="#">Dashboard</a>
+
+
           <div id="stats_controller"></div>
-          <div class="table-responsive" style="overflow-x:auto">
+          <div id="chart"></div>
+          <div id="logs-container" class="table-responsive" style="overflow-x:auto">
             <table id="logs" class="table table-bordered table-sm" style="width:100%" >
               <thead>
                 <tr>
@@ -219,6 +232,8 @@
 
  
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
   <script type="text/javascript" src="/app/utils.js"></script>
   <script src="/dist/bundle.js"></script>
