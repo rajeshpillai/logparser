@@ -78,7 +78,8 @@ export default class LogViewer {
   
     stats_c.html(`<div class="stats-container">${ui}</div>`);
   
-    animateCSS(".stats-item", "pulse");
+    //animateCSS(".stats-item", "pulse");
+    animateCSS(".stats-item", 'slideInDown');
   }
   
 
@@ -92,7 +93,7 @@ export default class LogViewer {
   
     this.refreshStats(data.stats_controller);
   
-    animateCSS("#logs", "backInLeft");
+    animateCSS("#logs", "pulse");
   }
   
 
