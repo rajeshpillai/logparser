@@ -29,3 +29,4 @@ $(".logs-link").on("click", (e) => {
   $("#chart").hide();
 });
 
+
