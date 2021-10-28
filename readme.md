@@ -7,8 +7,8 @@
 - Keep json log file in "./data" folder
 
 - Start the server
-  -- yarn server.js
-  -- OR npm run server.js
+  -- yarn server
+  -- OR npm run server
 
 
 - Start webpack
