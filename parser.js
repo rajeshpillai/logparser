@@ -73,8 +73,13 @@ function parseLogs(logs) {
       return parsedItem;
     } else if (line.jsonPayload) {
       let {method, path} = line.jsonPayload;
-      let controller = path.split("/")[1];
-      controller = controller.substr(0, controller.indexOf("?"));
+      let controller_path = path.split("/")[1];
+      
+      controller = controller_path.substr(0, controller_path.indexOf("?"));
+
+      if (!controller) {
+        controller = controller_path;
+      }
       console.log("controller: ", controller);
       let parsedItem = {
         timestamp: moment.utc(line.timestamp).local().format('DD-MM-YYYY HH:mm:ss'),
