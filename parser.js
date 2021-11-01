@@ -71,6 +71,23 @@ function parseLogs(logs) {
       }
       //items.push(parsedItem);
       return parsedItem;
+    } else if (line.jsonPayload) {
+      let {method, path} = line.jsonPayload;
+      let controller = path.split("/")[1];
+      controller = controller.substr(0, controller.indexOf("?"));
+      console.log("controller: ", controller);
+      let parsedItem = {
+        timestamp: moment.utc(line.timestamp).local().format('DD-MM-YYYY HH:mm:ss'),
+        date: moment.utc(line.timestamp).local().format('DD-MM-YYYY'),
+        time:  moment.utc(line.timestamp).local().format('HH:mm:ss'),
+        item: "",
+        method: method,
+        path: path,
+        query: "",
+        controller: _.trim(controller),
+        ip: ""
+      }
+      return parsedItem;
     }
 
   });

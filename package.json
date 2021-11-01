@@ -7,7 +7,7 @@
     "server": "nodemon server.js --ignore 'data/*.*'",
     "build": "webpack",
     "devserver": "webpack serve",
-    "dev": "webpack --watch"
+    "dev": "export SET NODE_OPTIONS=--openssl-legacy-provider &&  webpack --watch"
   },
   "keywords": [],
   "author": "",

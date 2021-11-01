@@ -190,8 +190,8 @@
                   <th>Time</th>
                   <th>IP Address</th>
                   <th>HTTP Method</th>
-                  <th>Url</th>
                   <th>Controller</th>
+                  <th>Url</th>
                 </tr>
               </thead>
               <tbody>
@@ -210,10 +210,10 @@
                         <%= log.method %>
                       </td>
                       <td>
-                        <%= log.path %>
+                        <%= log.controller %>
                       </td>
                       <td>
-                        <%= log.controller %>
+                        <%= log.path %>
                       </td>
                     </tr>
                 <% }) %>
