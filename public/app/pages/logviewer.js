@@ -138,7 +138,7 @@ export default class LogViewer {
         scrollX:        true,
         scrollCollapse: true,
         fixedColumns: true,
-
+        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
         initComplete: function () {
           $(".col-search").on( 'keyup change clear', function(e) {
             e.stopImmediatePropagation();
