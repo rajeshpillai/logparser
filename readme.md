@@ -4,13 +4,12 @@
 
 - npm install OR yarn install
 - npm install -g nodemon
-- Keep json log file in "./data" folder
+- Upload log files from UI OR Keep json log file in "./data" folder
 
-- Start the server
-  -- yarn server
-  -- OR npm run server
+- To Start the backend server run the below command
+  -- yarn server OR npm run server
 
 
-- Start webpack
-- npm run dev  OR yarn dev
+- To Start Dev Server run the below command
+  -- npm run dev  OR yarn dev
 
