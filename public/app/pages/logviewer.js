@@ -67,7 +67,7 @@ export default class LogViewer {
   
     for (var key of Object.keys(stats)) {
       let normalizedKey = key.replace("/", "-");
-      console.log(key + " -> " + stats[key])
+      // console.log(key + " -> " + stats[key])
       ui += `
         <div class="stats-item ${normalizedKey}">
           <h4 class="kpi">${stats[key]}</h4>
@@ -102,7 +102,7 @@ export default class LogViewer {
     $(function($) {
       var path = window.location.href; 
       $('.files a').each(function() {
-        console.log(this.href, path);
+        // console.log(this.href, path);
       if (this.href === path) {
         $(this).toggleClass('active');
         $("#log-title").innerHTML = "LOGS - " + path;

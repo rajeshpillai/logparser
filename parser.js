@@ -80,7 +80,7 @@ function parseLogs(logs) {
       if (!controller) {
         controller = controller_path;
       }
-      console.log("controller: ", controller);
+      // console.log("controller: ", controller);
       let parsedItem = {
         timestamp: moment.utc(line.timestamp).local().format('DD-MM-YYYY HH:mm:ss'),
         date: moment.utc(line.timestamp).local().format('DD-MM-YYYY'),
